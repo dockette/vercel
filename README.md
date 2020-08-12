@@ -1,7 +1,7 @@
 <h1 align=center>Dockette / Vercel</h1>
 
 <p align=center>
-   ▲ Docker images with preinstalled Node.js + Vercel for easy-to-use.
+   ▲ Docker image with preinstalled Node.js + Vercel for easy-to-use.
 </p>
 
 <p align=center>
