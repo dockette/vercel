@@ -1,6 +1,6 @@
-FROM dockette/alpine:3.12
+FROM dockette/alpine:3.15
 
-RUN echo '@community http://nl.alpinelinux.org/alpine/v3.12/community' >> /etc/apk/repositories && \
+RUN echo '@community http://nl.alpinelinux.org/alpine/v3.15/community' >> /etc/apk/repositories && \
     apk update && apk upgrade && \
     # DEPENDENCIES #############################################################
     apk add --update git && \
