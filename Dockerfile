@@ -1,16 +1,16 @@
-FROM dockette/alpine:3.15
+FROM dockette/alpine:3.24
 
-RUN echo '@community http://nl.alpinelinux.org/alpine/v3.15/community' >> /etc/apk/repositories && \
-    apk update && apk upgrade && \
+RUN apk update && apk upgrade && \
     # DEPENDENCIES #############################################################
-    apk add --update git && \
+    apk add --no-cache git && \
     # NODEJS ###################################################################
-    apk add --update nodejs-current@community npm@community && \
-    # NODEJS ###################################################################
+    apk add --no-cache nodejs npm && \
+    # VERCEL ###################################################################
     npm i -g vercel && \
     # CLEAN UP #################################################################
+    npm cache clean --force && \
     rm -rf /var/cache/apk/*
 
 WORKDIR /srv
 
-CMD nodejs
+CMD ["node"]
