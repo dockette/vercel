@@ -53,12 +53,19 @@ production:
     - vercel -t $VERCEL_TOKEN --scope $VERCEL_TEAM -c
 ```
 
+## Versions
+
+The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/vercel:<VERSION>`.
+To release, run `make release`, commit and push to `master`.
+
 ## Development
 
 ```sh
 make build
 make test
 make run
+make version
+make release
 ```
 
 ## Maintenance
