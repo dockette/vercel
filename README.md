@@ -13,24 +13,18 @@
 
 -----
 
+Node.js, npm, git and the Vercel CLI on Alpine, for deploys from CI.
+
 ## Usage
 
-**Basic**
+Run the Vercel CLI from the current directory, if you for whatever reason do not want to use the
+[Vercel CLI](https://vercel.com/download) itself.
 
-If you whatever reason don't want to use [Vercel CLI](https://vercel.com/download).
-
-```
-docker run \
-    -it \
-    --rm \
-    -v "$(pwd)":/srv \
-    dockette/vercel \
-    vercel -t [token] --scope [team] -c
+```sh
+docker run -it --rm -v "$(pwd)":/srv dockette/vercel vercel -t [token] --scope [team] -c
 ```
 
-**Gitlab CI**
-
-If you whatever reason don't want to use [Vercel for Gitlab](https://vercel.com/gitlab).
+In GitLab CI, if you for whatever reason do not want to use [Vercel for GitLab](https://vercel.com/gitlab):
 
 ```yml
 stages:
@@ -55,19 +49,25 @@ production:
 
 ## Versions
 
-The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/vercel:<VERSION>`.
-To release, run `make release`, commit and push to `master`.
+| Version | Release |
+|---------|---------|
+| `dockette/vercel:YYYY.MM.DD` | release `YYYY.MM.DD` |
+| `dockette/vercel:latest` | latest build of `master` |
+
+All versions build on `dockette/alpine:3.24` with the Vercel CLI from npm at build time. Releases are listed on
+[GitHub](https://github.com/dockette/vercel/releases).
 
 ## Development
 
 ```sh
-make build
-make test
-make run
-make version
-make release
+make build          # build linux/amd64 and linux/arm64
+make test           # check vercel and node
+make run            # open node in the image, with the current directory in /srv
+make version        # print VERSION
+make release        # set today's date in VERSION
 ```
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
